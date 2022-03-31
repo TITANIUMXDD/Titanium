@@ -19,7 +19,9 @@ import pickle
 
 
 init()
-
+config = configparser.ConfigParser()
+config.read("config.ini")
+scraped_grp = config['SH4DOW_OWNER']['To_Group']
 
 r = Fore.RED
 lg = Fore.GREEN
@@ -123,11 +125,11 @@ try:
                 os.system('del status.dat')
             else: 
                 os.system('rm status.dat')
-            scraped_grp = input(f'{INPUT}{cy} Public/Private group link to scrape members: {r}')
-            index = 0
-except:
-    scraped_grp = input(f'{INPUT}{cy} Public/Private group link to scrape members: {r}')
-    index = 0
+            #scraped_grp = input(f'{INPUT}{cy} Public/Private group link to scrape members: {r}')
+            #index = 0
+#except:
+    #scraped_grp = input(f'{INPUT}{cy} Public/Private group link to scrape members: {r}')
+    #index = 0
 # load all the accounts(phonenumbers)
 accounts = []
 f = open('vars.txt', 'rb')
