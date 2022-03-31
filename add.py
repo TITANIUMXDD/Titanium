@@ -10,6 +10,9 @@ from telethon.tl.functions.channels import JoinChannelRequest
 from telethon.tl.types import UserStatusRecently
 import time
 import random
+import csv
+import configparser
+import traceback
 from colorama import init, Fore
 import os
 import pickle
