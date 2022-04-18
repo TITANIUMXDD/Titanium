@@ -125,11 +125,12 @@ try:
                 os.system('del status.dat')
             else: 
                 os.system('rm status.dat')
-            #scraped_grp = input(f'{INPUT}{cy} Public/Private group link to scrape members: {r}')
-            #index = 0
-#except:
-    #scraped_grp = input(f'{INPUT}{cy} Public/Private group link to scrape members: {r}')
-    #index = 0
+            scraped_grp = input(f'{INPUT}{cy} Public/Private group link to scrape members: {r}')
+            index = 0
+except:
+
+ scraped_grp = input(f'{INPUT}{cy} Public/Private group link to scrape members: {r}')
+    index = 0
 # load all the accounts(phonenumbers)
 accounts = []
 f = open('vars.txt', 'rb')
@@ -167,7 +168,7 @@ adding_status = 0
 approx_members_count = 0
 for acc in to_use:
     stop = index + 60
-    c = TelegramClient(f'sessions/{acc[0]}', 3910389 , '86f861352f0ab76a251866059a6adbd6')
+    c = TelegramClient(f'sessions/{acc[0]}', 16746680 , 'd038e172eb99839b69c39c3c25cd98cf')
     print(f'{plus}{grey} User: {cy}{acc[0]}{lg} -- {cy}Starting session... ')
     c.start(acc[0])
     acc_name = c.get_me().first_name
@@ -178,7 +179,7 @@ for acc in to_use:
                 c(ImportChatInviteRequest(g_hash))
                 print(f'{plus}{grey} User: {cy}{acc_name}{lg} -- Joined group to scrape')
             except UserAlreadyParticipantError:
-                pass 
+                pass
         else:
             c(JoinChannelRequest(scraped_grp))
             print(f'{plus}{grey} User: {cy}{acc_name}{lg} -- Joined group to scrape')
@@ -205,7 +206,7 @@ for acc in to_use:
     #c.get_dialogs()
     try:
         members = []
-        members = c.get_participants(scraped_grp_entity, aggressive=False)
+        members = c.get_participants(scraped_grp_entity, limit = 5500)
     except Exception as e:
         print(f'{error}{r} Couldn\'t scrape members')
         print(f'{error}{r} {e}')
@@ -221,7 +222,8 @@ for acc in to_use:
     for user in members[index:stop]:
         index += 1
         if peer_flood_status == 10:
-            print(f'{error}{r} Too many Peer Flood Errors! Closing session...')
+            print(f'{error}{r} Too many Peer Flood Errors! Closing session...') 
+
             break
         try:
             if choice == 0:
